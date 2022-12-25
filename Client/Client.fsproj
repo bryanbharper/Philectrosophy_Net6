@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <DefineConstants>FABLE_COMPILER</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Index.fs" />
+        <Compile Include="App.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Elmish" Version="4.0.0" />
+      <PackageReference Include="Fable.Core" Version="3.7.1" />
+      <PackageReference Include="Fable.Elmish" Version="4.0.0" />
+      <PackageReference Include="Fable.Elmish.Debugger" Version="4.0.0" />
+      <PackageReference Include="Fable.Elmish.HMR" Version="7.0.0" />
+      <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />
+      <PackageReference Include="Fable.React" Version="9.1.0" />
+      <PackageReference Include="Fable.Remoting.Client" Version="7.25.0" />
+      <PackageReference Include="Feliz" Version="2.0.1" />
+      <PackageReference Include="Feliz.Bulma" Version="2.19.0" />
+      <PackageReference Include="Fulma" Version="2.16.0" />
+      <PackageReference Update="FSharp.Core" Version="6.0.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Shared\Shared.fsproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="index.html" />
+      <Content Include="public\favicon.png" />
+      <Content Include=".npmrc" />
+      <Content Include="package.json" />
+      <Content Include="webpack.config.js" />
+    </ItemGroup>
+
+</Project>
