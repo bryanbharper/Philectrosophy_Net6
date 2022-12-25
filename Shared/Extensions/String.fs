@@ -2,9 +2,9 @@
 
 open System
 
-let contains (s: string) (sub: string) = s.Contains sub
+let contains (sub: string) (s: string) = s.Contains sub
 let trim (s: string) = s.Trim()
-let ofChars (chars: char []) = String chars
+let ofChars (chars: char seq) = chars |> Seq.map string |> Seq.fold (+) ""
 let split (splitter: char) (s: string) = s.Split splitter
 let join (joiner: string) (s: string seq) = String.Join(joiner, s)
 let replace (oldVal: string) (newVal: string) (s: string) = s.Replace(oldVal, newVal)

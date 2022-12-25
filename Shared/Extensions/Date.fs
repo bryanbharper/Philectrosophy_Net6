@@ -1,4 +1,4 @@
-﻿module Shared.Extensions.Date
+﻿namespace Shared.Extensions
 
 open System
 

@@ -3,17 +3,25 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <RootNamespace>Tests.Client</RootNamespace>
+        <RootNamespace>Tests.Shared</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <Compile Include="Async.fs" />
+        <Compile Include="Date.fs" />
+        <Compile Include="Dtos.fs" />
+        <Compile Include="Math.fs" />
+        <Compile Include="Option.fs" />
+        <Compile Include="String.fs" />
+        <Compile Include="Tuple.fs" />
+        <Compile Include="Root.fs" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Expecto" Version="9.0.4" />
       <PackageReference Include="Expecto.FsCheck" Version="9.0.4" />
       <PackageReference Include="Fable.Mocha" Version="2.15.0" />
+      <PackageReference Update="FSharp.Core" Version="6.0.7" />
     </ItemGroup>
 
     <ItemGroup>

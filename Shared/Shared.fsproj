@@ -6,15 +6,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Shared.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="Math.fs" />
         <Compile Include="StopWords.fs" />
-        <Compile Include="Extensions\Opiton.fs" />
-        <Compile Include="Extensions\Tuple.fs" />
-        <Compile Include="Extensions\Date.fs" />
-        <Compile Include="Extensions\String.fs" />
         <Compile Include="Extensions\Async.fs" />
+        <Compile Include="Extensions\Date.fs" />
+        <Compile Include="Extensions\Opiton.fs" />
+        <Compile Include="Extensions\String.fs" />
+        <Compile Include="Extensions\Tuple.fs" />
         <Compile Include="Dtos\BlogEntry.fs" />
         <Compile Include="Dtos\Song.fs" />
         <Compile Include="Contracts\ApiContract.fs" />
