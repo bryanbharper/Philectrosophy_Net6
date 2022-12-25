@@ -9,7 +9,7 @@ open Expecto
 open Shared.Extensions
 
 #if !FABLE_COMPILER
-let properties = testList "String Property Tests" [
+let properties = testList "|String Property Tests|" [
 
     testProperty "Async.map: map id = id."
     <| fun (randVal: int) ->
@@ -44,7 +44,7 @@ let properties = testList "String Property Tests" [
 ]
 #endif
 
-let all = testList "Async" [
+let all = testList "|Async|" [
 
 #if !FABLE_COMPILER
     properties

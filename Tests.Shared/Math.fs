@@ -13,7 +13,7 @@ open Shared.Math.Operators
 
 let regularTests =
     testList
-        "Math"
+        "|Math|"
         [
             testCase "-% handles negative values"
             <| fun _ ->
@@ -94,7 +94,7 @@ let propertyTests =
 
 let all =
     testList
-        "All Math"
+        "|All Math|"
         [
             regularTests
 #if !FABLE_COMPILER

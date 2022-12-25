@@ -13,7 +13,7 @@ open Expecto.Logging
 open Shared.Extensions
 open Shared.Dtos
 
-let all = testList "DomainModel" [
+let all = testList "|DomainModel|" [
    testCase "BlogEntry.create initializes with default values"
    <| fun _ ->
        // arrange

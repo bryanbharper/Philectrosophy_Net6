@@ -13,7 +13,7 @@ open FsCheck
 open Shared.Extensions
 
 #if !FABLE_COMPILER
-let properties = testList "String Property Tests" [
+let properties = testList "|String Property Tests|" [
 
     testProperty "String.contains: testOracle."
     <| fun (NonNull contained) (NonNull (container: string)) ->
@@ -136,7 +136,7 @@ let properties = testList "String Property Tests" [
 
 ]
 #endif
-let all = testList "String" [
+let all = testList "|String|" [
 #if !FABLE_COMPILER
     properties
 #endif

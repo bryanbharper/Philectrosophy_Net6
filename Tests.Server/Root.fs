@@ -3,7 +3,7 @@
 open Expecto
 
 let allTests =
-    testList "Server Tests"
+    testList "|Server Tests|"
         [
             // Data.BlogRepository.all
             // Data.SongRepository.all
