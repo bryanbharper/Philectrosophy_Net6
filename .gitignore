@@ -1,24 +1,36 @@
+# Build / Deploy
 bin/
 obj/
 /packages/
-riderModule.iml
-/_ReSharper.Caches/
-
-# SAFE Stack
-.fable/
-*.fs.js
-*.fs.js.map
-.fake/
-.farmer/
-.idea/
-.ionide/
-.vs/
 deploy/
 output/
 packages/
-paket-files/
+
+# IDE
+riderModule.iml
+/_ReSharper.Caches/
+.idea/
+.ionide/
+.vs/
+
+# Tools
+.fable/
+.fake/
+.farmer/
+
+# Node
+*.fs.js
+*.fs.js.map
 node_modules/
+
+# Scrips
 release.cmd
 release.sh
+
+# Config
+appsettings.json
+appsettings.*.json
+
+# Misc
 *.orig
 *.DotSettings.user
