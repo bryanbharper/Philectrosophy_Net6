@@ -12,7 +12,7 @@ let allTests =
             // File.all
             // Markdown.all
             // Rank.all
-            Tests.Shared.Root.allTests
+            Tests.Shared.Root.all
         ]
 
 [<EntryPoint>]

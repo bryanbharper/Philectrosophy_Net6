@@ -1,56 +1,70 @@
 module Server.Program
 
+open Dapper.FSharp
 open Fable.Remoting.Server
 open Fable.Remoting.Giraffe
+open File
+open Giraffe.Core
+open Giraffe.SerilogExtensions
+open Microsoft.AspNetCore.Http
+open Microsoft.Extensions.DependencyInjection
 open Saturn
+open Serilog
 
-open Shared
+open Shared.Contracts
 
-module Storage =
-    let todos = ResizeArray()
+open Server.Data
+open Server.Api
+open Shared.Dtos
 
-    let addTodo (todo: Todo) =
-        if Todo.isValid todo.Description then
-            todos.Add todo
-            Ok()
-        else
-            Error "Invalid todo"
+let configureServices (services : IServiceCollection) =
+    services
+        .AddSingleton<IContext<BlogEntry>, BlogContext>()
+        .AddSingleton<IContext<Song>, SongContext>()
+        .AddSingleton<IRepository<BlogEntry>, BlogRepository>()
+        .AddSingleton<IRepository<Song>, SongRepository>()
+        .AddSingleton<IFileAccess, PublicFileStore>()
+        .AddSingleton<IBlogContentStore, BlogContentStore>()
 
-    do
-        addTodo (Todo.create "Create new SAFE project")
-        |> ignore
-
-        addTodo (Todo.create "Write your app") |> ignore
-        addTodo (Todo.create "Ship it !!!") |> ignore
-
-let todosApi =
-    {
-        getTodos = fun () -> async { return Storage.todos |> List.ofSeq }
-        addTodo =
-            fun todo ->
-                async {
-                    return
-                        match Storage.addTodo todo with
-                        | Ok () -> todo
-                        | Error e -> failwith e
-                }
-    }
-
-let webApp =
-    Remoting.createApi ()
+let blogApi =
+    Remoting.createApi()
+    |> Remoting.fromReader BlogApi.blogApiReader
     |> Remoting.withRouteBuilder Route.builder
-    |> Remoting.fromValue todosApi
+    |> Remoting.withErrorHandler Error.handler
     |> Remoting.buildHttpHandler
+
+let songApi: HttpFunc -> HttpContext -> HttpFuncResult =
+    Remoting.createApi()
+    |> Remoting.fromReader SongApi.songApiReader
+    |> Remoting.withRouteBuilder Route.builder
+    |> Remoting.withErrorHandler Error.handler
+    |> Remoting.buildHttpHandler
+
+let fallbackApi = router {
+    not_found_handler (setStatusCode 200 >=> htmlFile "public/index.html")
+}
+
+let fullApi: HttpHandler =
+    choose [ blogApi; songApi; fallbackApi ]
+    |> SerilogAdapter.Enable
+
+OptionTypes.register ()
+
+Log.Logger <-
+    LoggerConfiguration()
+      .Destructure.FSharpTypes()
+      .WriteTo.Console() // https://github.com/serilog/serilog-sinks-console
+      .CreateLogger()
+      // add more sinks etc.
 
 let app =
     application {
-        use_router webApp
+        url "http://0.0.0.0:8085"
+        use_router fullApi
+        service_config configureServices
         memory_cache
         use_static "public"
         use_gzip
     }
 
-[<EntryPoint>]
-let main _ =
-    run app
-    0
+run app
