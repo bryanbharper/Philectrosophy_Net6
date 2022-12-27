@@ -6,16 +6,32 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Api\BlogApi.fs" />
+        <Compile Include="Api\SongApi.fs" />
+        <Compile Include="Data\Repository.fs" />
+        <Compile Include="File.fs" />
+        <Compile Include="Markdown.fs" />
+        <Compile Include="Rank.fs" />
         <Compile Include="Root.fs" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Expecto" Version="9.0.4" />
       <PackageReference Update="FSharp.Core" Version="6.0.7" />
+      <PackageReference Include="FakeItEasy" Version="7.3.1" />
+      <PackageReference Include="Foq" Version="1.8.0" />
+      <PackageReference Include="NinjaNye.SearchExtensions" Version="3.0.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Server\Server.fsproj" />
       <ProjectReference Include="..\Tests.Shared\Tests.Shared.fsproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Include="test-files\*.*">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    
 </Project>

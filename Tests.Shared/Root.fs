@@ -36,12 +36,11 @@ let route =
         Expect.equal result $"/api/%s{typeName}/%s{method}" "Should be '/api/type/method.'"
 
 
-let all = testList "|Shared Tests|" [
+let all = testList "Shared Tests" [
     Async.all
     Date.all
     Dtos.all
     Option.all
-    Math.all
     route
     String.all
     Tuple.all

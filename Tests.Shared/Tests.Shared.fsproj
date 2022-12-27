@@ -10,7 +10,6 @@
         <Compile Include="Async.fs" />
         <Compile Include="Date.fs" />
         <Compile Include="Dtos.fs" />
-        <Compile Include="Math.fs" />
         <Compile Include="Option.fs" />
         <Compile Include="String.fs" />
         <Compile Include="Tuple.fs" />

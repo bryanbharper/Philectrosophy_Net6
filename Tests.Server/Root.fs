@@ -1,18 +1,18 @@
-﻿module Server.Tests.All
+﻿module Tests.Server.Root
 
 open Expecto
+open Tests
 
 let allTests =
-    testList "|Server Tests|"
+    testList "Server Tests"
         [
-            // Data.BlogRepository.all
-            // Data.SongRepository.all
-            // Api.BlogApi.all
-            // Api.SongApi.all
-            // File.all
-            // Markdown.all
-            // Rank.all
-            Tests.Shared.Root.all
+            Data.Repository.all
+            Api.BlogApi.all
+            Api.SongApi.all
+            File.all
+            Markdown.all
+            Rank.all
+            Shared.Root.all
         ]
 
 [<EntryPoint>]

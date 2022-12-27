@@ -11,7 +11,7 @@ open Shared.Extensions
 
 let all =
     testList
-        "|Option|"
+        "Option"
         [
             testCase "Option.sequenceOption returns Async<None> when input is None"
             <| fun _ ->

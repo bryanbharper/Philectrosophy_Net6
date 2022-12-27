@@ -11,7 +11,7 @@ open Shared.Extensions
 
 let all =
     testList
-        "|Tuple|"
+        "Tuple"
         [
             testCase "Tuple.sequenceOption returns None when fst tup is None"
             <| fun _ ->

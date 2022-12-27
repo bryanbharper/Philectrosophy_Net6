@@ -29,7 +29,7 @@ let months =
     ]
 
 #if !FABLE_COMPILER
-let properties = testList "|Date Property Tests|" [
+let properties = testList "Date Property Tests" [
 
     testProperty "MonthInt.create/ToInt32: value is always between 1 and 12."
     <| fun (randVal: int) ->
@@ -94,7 +94,7 @@ let properties = testList "|Date Property Tests|" [
 
 ]
 #endif
-let all = testList "|Date|" [
+let all = testList "Date" [
 
 #if !FABLE_COMPILER
     properties

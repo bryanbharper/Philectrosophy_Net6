@@ -23,22 +23,22 @@ type BlogContext(config: IConfiguration) =
         member this.All() =
             select {
                 for entry in table do
-                    selectAll
+                selectAll
             }
             |> connection.SelectAsync<BlogEntry>
 
         member this.Where predicate =
             select {
                 for entry in table do
-                    where (predicate entry)
+                where (predicate entry)
             }
             |> connection.SelectAsync<BlogEntry>
         
         member this.Update entry =
             update {
                 for e in table do
-                    set entry
-                    where (e.Slug = entry.Slug)
+                set entry
+                where (e.Slug = entry.Slug)
             }
             |> connection.UpdateAsync
 

@@ -34,7 +34,7 @@ type SongRepository(context: IContext<Song>) =
         member this.GetAll() =
             context.All()
             |> Async.AwaitTask
-            |> Async.map List.ofSeq
+            |> Async.map (Seq.filter (fun s -> s.IsPublished) >> List.ofSeq)
             
         member this.GetSingle slug =
             context.Where (fun entry -> entry.Slug = slug)
