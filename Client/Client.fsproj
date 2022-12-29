@@ -23,6 +23,10 @@
         <Compile Include="Pages\Music\Types.fs" />
         <Compile Include="Pages\Music\Component.fs" />
         <Compile Include="Pages\Music\View.fs" />
+        <Compile Include="Pages\About.fs" />
+        <Compile Include="Pages\Blog.fs" />
+        <Compile Include="Pages\BlogEntry.fs" />
+        <Compile Include="Pages\Search.fs" />
         <Compile Include="Index.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>
