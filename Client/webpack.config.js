@@ -15,12 +15,12 @@ const CONFIG = {
     devServerProxy: {
         // redirect requests that start with /api/ to the server on port 5000
         '/api/**': {
-            target: 'http://localhost:' + (process.env.SERVER_PROXY_PORT || '5000'),
+            target: 'http://localhost:' + (process.env.SERVER_PROXY_PORT || '8085'),
             changeOrigin: true
         },
         // redirect websocket requests that start with /socket/ to the server on the port 5000
         '/socket/**': {
-            target: 'http://localhost:' + (process.env.SERVER_PROXY_PORT || '5000'),
+            target: 'http://localhost:' + (process.env.SERVER_PROXY_PORT || '8085'),
             ws: true
         }
     }

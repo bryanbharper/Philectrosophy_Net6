@@ -62,7 +62,7 @@ let input dispatch =
             Bulma.Input
             Bulma.IsRounded
         ]
-        prop.text "search"
+        prop.type' "search"
         prop.onChange (UserChangedInput >> dispatch)
         prop.onKeyDown (fun ke -> if ke.key = "Enter" then dispatch UserClickedSubmit)
         prop.onEmptied (fun _ -> dispatch UserClearedSearch)
