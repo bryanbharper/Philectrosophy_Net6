@@ -1,25 +1,56 @@
 ﻿module Index
 
+open Client.Components
+open Client.Urls
 open Elmish
-open Fable.Remoting.Client
-open Shared
+open Client.Styles
 
-type Todo = { Id: int; Text: string; IsCompleted: bool }
+type Model =
+    {
+        Number: int
+        Navbar: Navbar.State
+    }
 
-type Model = { Todos: Todo list; Input: string }
-
-type Msg = unit
+type Msg =
+    | ButtonWasClicked
+    | Navbar of Navbar.Msg
 
 let init () : Model * Cmd<Msg> =
-    let model = { Todos = []; Input = "" }
+    let model =
+        {
+            Number = 0
+            Navbar = Url.Blog |> Some |> Navbar.init
+        }
 
     model, Cmd.none
 
 let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
     match msg with
-    | _ -> model, Cmd.none
+    | ButtonWasClicked ->
+        { model with Number = model.Number + 1 }, Cmd.none
+    | Navbar msg' ->
+        { model with
+            Navbar = Navbar.update msg' model.Navbar
+        },
+        Cmd.none
 
 open Feliz
 
 let view (model: Model) (dispatch: Msg -> unit) =
-    Html.h1 "Hello world"
+    Html.div [
+        Navbar.render model.Navbar (Msg.Navbar >> dispatch)
+        Html.section [
+            prop.classes [ Bulma.Section ]
+            prop.children [
+                Html.h1 [
+                    prop.classes [ Bulma.Title ]
+                    prop.text $"{model.Number}"
+                ]
+                Html.button [
+                    prop.classes [ Bulma.Button ]
+                    prop.text "Click me"
+                    prop.onClick (fun _ -> dispatch ButtonWasClicked)
+                ]
+            ]
+        ]
+    ]

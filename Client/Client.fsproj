@@ -6,6 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Styles.fs" />
+        <Compile Include="Urls.fs" />
+        <Compile Include="Extensions.fs" />
+        <Compile Include="Interop.fs" />
+        <Compile Include="Apis\Http.fs" />
+        <Compile Include="Apis\GoogleSearchApi.fs" />
+        <Compile Include="Components\Navbar.fs" />
         <Compile Include="Index.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>
@@ -19,10 +26,12 @@
       <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />
       <PackageReference Include="Fable.React" Version="9.1.0" />
       <PackageReference Include="Fable.Remoting.Client" Version="7.25.0" />
+      <PackageReference Include="Fable.SimpleHttp" Version="3.5.0" />
       <PackageReference Include="Feliz" Version="2.0.1" />
       <PackageReference Include="Feliz.Bulma" Version="2.19.0" />
       <PackageReference Include="Fulma" Version="2.16.0" />
       <PackageReference Update="FSharp.Core" Version="6.0.7" />
+      <PackageReference Include="Zanaptak.TypedCssClasses" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
