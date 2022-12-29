@@ -13,14 +13,29 @@ let sharedPath = Path.getFullName "Shared"
 let serverPath = Path.getFullName "Server"
 let clientPath = Path.getFullName "Client"
 let deployPath = Path.getFullName "deploy"
+
+let blogImagePath =
+    Path.combine serverPath "public/blog.posts/img"
+let clientPublicPath = Path.combine clientPath "public"
+
 // let sharedTestsPath = Path.getFullName "tests/Shared"
 // let serverTestsPath = Path.getFullName "tests/Server"
 // let clientTestsPath = Path.getFullName "tests/Client"
+
+let printSection msg =
+    Trace.traceLine ()
+    Trace.tracefn $"%s{msg}"
+    Trace.traceLine ()
 
 Target.create "Clean" (fun _ ->
     Shell.cleanDir deployPath
     run dotnet "fable clean --yes" clientPath // Delete *.fs.js files created by Fable
 )
+
+Target.create "BlogImages"
+<| fun _ ->
+    "Moving blog images to client." |> printSection
+    Shell.copyDir (Path.combine clientPublicPath "img") blogImagePath (fun _ -> true)
 
 Target.create "InstallClient" (fun _ -> run npm "install" clientPath)
 
@@ -71,6 +86,7 @@ let dependencies = [
 
     "Clean"
         ==> "InstallClient"
+        ==> "BlogImages"
         ==> "Run"
 
     // "InstallClient"

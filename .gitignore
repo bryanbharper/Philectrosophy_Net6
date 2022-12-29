@@ -34,3 +34,6 @@ appsettings.*.json
 # Misc
 *.orig
 *.DotSettings.user
+
+# Copied images
+Client/public/img/
