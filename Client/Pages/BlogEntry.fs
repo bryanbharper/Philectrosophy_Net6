@@ -212,5 +212,5 @@ let render (state: State) (_: Msg -> unit): ReactElement =
             //     markdown.rehypePlugins [| Rehype.raw |]
             // ]
             Html.hr []
-            // Disqus.render entry.Metadata.Slug entry.Metadata.Title
+            Disqus.render entry.Metadata.Slug entry.Metadata.Title
     ]

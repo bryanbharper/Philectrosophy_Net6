@@ -16,6 +16,7 @@
         <Compile Include="Components\Spinner.fs" />
         <Compile Include="Components\MediaObject.fs" />
         <Compile Include="Components\EntryMedia.fs" />
+        <Compile Include="Components\Disqus.fs" />
         <Compile Include="Pages\ErrorPages\BaseError.fs" />
         <Compile Include="Pages\ErrorPages\NotFound.fs" />
         <Compile Include="Pages\ErrorPages\NotImplemented.fs" />

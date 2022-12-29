@@ -15,15 +15,11 @@ module Ninja =
     let toRanked (searchResult: EnumerableStringSearch<'a>) = searchResult.ToRanked()
 
 
-open System.Linq.Expressions
-open Shared
-open Shared.Extensions
-open Shared.Dtos
-
 module Rank =
-    type FunAs() =
-        static member LinqExpression<'T, 'TResult>(e: Expression<Func<'T, 'TResult>>) = e
-
+    open Shared
+    open Shared.Extensions
+    open Shared.Dtos
+    open SharedTypes
     let filterCommon (words: string array) =
         words
         |> Array.filter (fun w -> StopWords.all |> List.contains (String.toLower w) |> not)

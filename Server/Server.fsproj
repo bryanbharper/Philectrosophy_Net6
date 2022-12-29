@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="SharedTypes.fs" />
         <Compile Include="Markdown.fs" />
         <Compile Include="Config.fs" />
         <Compile Include="File.fs" />

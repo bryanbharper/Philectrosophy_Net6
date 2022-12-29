@@ -16,9 +16,9 @@ type BlogRepository(context: IContext<BlogEntry>) =
             |> Async.map List.ofSeq
             
         member this.GetSingle slug =
-            context.Where (fun entry -> entry.Slug = slug)
+            context.All()
             |> Async.AwaitTask
-            |> Async.map (fun r -> if (Seq.length r) > 0 then r |> Seq.head |> Some else None)
+            |> Async.map (Seq.tryFind (fun x -> x.Slug = slug))
 
         member this.Update entry =
             async {
@@ -37,9 +37,9 @@ type SongRepository(context: IContext<Song>) =
             |> Async.map (Seq.filter (fun s -> s.IsPublished) >> List.ofSeq)
             
         member this.GetSingle slug =
-            context.Where (fun entry -> entry.Slug = slug)
+            context.All()
             |> Async.AwaitTask
-            |> Async.map (fun r -> if (Seq.length r) > 0 then r |> Seq.head |> Some else None)
+            |> Async.map (Seq.tryFind (fun x -> x.Slug = slug))
 
         member this.Update entry =
             async {
