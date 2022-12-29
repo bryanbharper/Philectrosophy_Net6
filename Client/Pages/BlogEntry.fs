@@ -12,7 +12,6 @@ open Shared.Dtos
 open Shared.Contracts
 
 open Client.Components
-// open Client.Components.ReactMarkdown
 open Client.Styles
 open Client.Urls
 
@@ -204,13 +203,12 @@ let render (state: State) (_: Msg -> unit): ReactElement =
         | InProgress -> Spinner.render
         | Resolved entry ->
             header entry.Metadata
-            Html.h1 "TODO: Render markdown"
-            // Markdown.render [
-            //     markdown.children entry.Content
-            //     markdown.linkTarget "_blank"
-            //     markdown.className Style.Markdown
-            //     markdown.rehypePlugins [| Rehype.raw |]
-            // ]
+            Markdown.render [
+                markdown.children entry.Content
+                markdown.linkTarget "_blank"
+                markdown.className Style.Markdown
+                markdown.rehypePlugins [| Rehype.raw |]
+            ]
             Html.hr []
             Disqus.render entry.Metadata.Slug entry.Metadata.Title
     ]
