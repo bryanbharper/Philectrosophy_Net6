@@ -32,5 +32,10 @@
       <PackageReference Update="FSharp.Core" Version="6.0.7" />
       <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
     </ItemGroup>
-
+    <ItemGroup>
+        <Content Include="public\**" Exclude="public\blog.posts\img\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="public\blog.posts\img\**" />
+    </ItemGroup>
 </Project>
