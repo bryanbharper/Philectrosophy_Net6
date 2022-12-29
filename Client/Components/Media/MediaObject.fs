@@ -3,7 +3,6 @@
 open Client.Styles
 open Feliz
 
-
 let render imgUrl (contents: ReactElement list) =
     Html.div [
         prop.className Bulma.Media

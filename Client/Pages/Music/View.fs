@@ -8,7 +8,7 @@ open Shared.Dtos
 open Client.Components
 open Client.Pages.Music.Types
 open Client.Styles
-// open Client.Components.AudioPlayer
+open Client.Components.AudioPlayer
 
 let shuffleBtn dispatch state =
     Html.button [
@@ -126,17 +126,17 @@ let render (state: State) (dispatch: Msg -> unit) =
                         Html.div [
                             playlistTable dispatch songs current
 
-                            // AudioPlayer.render [
-                            //     player.src current.Path
-                            //     player.autoPlay true
-                            //     player.autoPlayAfterSrcChange true
-                            //     player.showSkipControls true
-                            //     player.onClickNext (fun () -> Msg.UserClickedNext |> dispatch)
-                            //     player.onClickPrevious (fun () -> Msg.UserClickedPrevious |> dispatch)
-                            //     player.onEnded (fun _ -> Msg.TrackEnded |> dispatch)
-                            //     player.onPlay (fun _ -> Msg.UserClickedPlay |> dispatch)
-                            //     player.onPause (fun _ -> Msg.UserClickedPause |> dispatch)
-                            // ]
+                            AudioPlayer.render [
+                                player.src current.Path
+                                player.autoPlay true
+                                player.autoPlayAfterSrcChange true
+                                player.showSkipControls true
+                                player.onClickNext (fun () -> Msg.UserClickedNext |> dispatch)
+                                player.onClickPrevious (fun () -> Msg.UserClickedPrevious |> dispatch)
+                                player.onEnded (fun _ -> Msg.TrackEnded |> dispatch)
+                                player.onPlay (fun _ -> Msg.UserClickedPlay |> dispatch)
+                                player.onPause (fun _ -> Msg.UserClickedPause |> dispatch)
+                            ]
                         ]
                 ]
             ]
