@@ -33,7 +33,8 @@ let update (msg: Msg) (state: State): State =
         { state with
             BurgerExpanded = not state.BurgerExpanded
         }
-    | UrlChanged url -> { state with ActivePage = url }
+    | UrlChanged url ->
+        { state with ActivePage = url }
 
 let navLink (url: Url) isActive =
     Html.a [
