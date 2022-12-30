@@ -109,6 +109,8 @@ let update (msg: Msg) (state: State): State * Cmd<Msg> =
 open Feliz
 
 let render (state: State) (dispatch: Msg -> unit): ReactElement =
+    Client.Styles.HighlightJs.instance.highlightAll()
+    
     let activePage =
         match state.CurrentPage with
         | Page.About state -> About.render state (Msg.About >> dispatch)
