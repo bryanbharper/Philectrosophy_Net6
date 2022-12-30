@@ -4,10 +4,11 @@
 open System.Linq
 open Expecto
 
-open Server
-
 open Shared.Extensions
 open Shared.Dtos
+
+open Server
+open Server.SharedTypes
 
 type TestData =
     {
@@ -35,7 +36,7 @@ let ninja =
                     // act
                     let result =
                         testData
-                        |> Ninja.search [| Rank.FunAs.LinqExpression(fun td -> td.Name) |]
+                        |> Ninja.search [| FunAs.LinqExpression(fun td -> td.Name) |]
 
                     // assert
                     Expect.equal (Seq.toList result) testData "Input and result should be equivalent"
@@ -48,7 +49,7 @@ let ninja =
                     // act
                     let result =
                         testData
-                        |> Ninja.search [| Rank.FunAs.LinqExpression(fun td -> td.Name) |]
+                        |> Ninja.search [| FunAs.LinqExpression(fun td -> td.Name) |]
                         |> Ninja.containing [| searchTerm |]
 
                     // assert
@@ -62,7 +63,7 @@ let ninja =
                     // act
                     let result =
                         testData
-                        |> Ninja.search [| Rank.FunAs.LinqExpression(fun td -> td.Name) |]
+                        |> Ninja.search [| FunAs.LinqExpression(fun td -> td.Name) |]
                         |> Ninja.containing [| searchTerm |]
 
                     // assert
@@ -84,7 +85,7 @@ let ninja =
                     // act
                     let result =
                         testData'
-                        |> Ninja.search [| Rank.FunAs.LinqExpression(fun td -> td.Name) |]
+                        |> Ninja.search [| FunAs.LinqExpression(fun td -> td.Name) |]
                         |> Ninja.containing [| searchTerm |]
 
                     // assert
@@ -100,7 +101,7 @@ let ninja =
                     // act
                     let result =
                         testData
-                        |> Ninja.search [| Rank.FunAs.LinqExpression(fun td -> td.Name) |]
+                        |> Ninja.search [| FunAs.LinqExpression(fun td -> td.Name) |]
                         |> Ninja.containing [| searchTerm1; searchTerm2 |]
 
                     // assert
@@ -119,8 +120,8 @@ let ninja =
                         testData
                         |> Ninja.search
                                [|
-                                   Rank.FunAs.LinqExpression(fun td -> td.Name)
-                                   Rank.FunAs.LinqExpression(fun td -> td.Description)
+                                   FunAs.LinqExpression(fun td -> td.Name)
+                                   FunAs.LinqExpression(fun td -> td.Description)
                                |]
                         |> Ninja.containing [| searchTerm |]
 
@@ -142,8 +143,8 @@ let ninja =
                         testData
                         |> Ninja.search
                                [|
-                                   Rank.FunAs.LinqExpression(fun td -> td.Name)
-                                   Rank.FunAs.LinqExpression(fun td -> td.Description)
+                                   FunAs.LinqExpression(fun td -> td.Name)
+                                   FunAs.LinqExpression(fun td -> td.Description)
                                |]
                         |> Ninja.containing [| searchTerm1; searchTerm2 |]
 
@@ -348,7 +349,7 @@ let rank =
 
                 let middle =
                     BlogEntry.empty
-                    |> BlogEntry.setTags (midMatch) // |> String.split ' ' |> String.join ',')
+                    |> BlogEntry.setTags midMatch // |> String.split ' ' |> String.join ',')
 
                 let highest =
                     BlogEntry.empty

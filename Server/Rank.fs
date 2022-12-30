@@ -2,6 +2,7 @@
 
 open System
 open NinjaNye.SearchExtensions
+open Server.SharedTypes
 
 module Ninja =
     let search expressions (queryable: 'a seq) =
@@ -19,7 +20,7 @@ module Rank =
     open Shared
     open Shared.Extensions
     open Shared.Dtos
-    open SharedTypes
+
     let filterCommon (words: string array) =
         words
         |> Array.filter (fun w -> StopWords.all |> List.contains (String.toLower w) |> not)

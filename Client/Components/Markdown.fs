@@ -1,4 +1,4 @@
-﻿module Client.Components
+﻿namespace Client.Components
 
 open Feliz
 open Fable.Core

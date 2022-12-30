@@ -1,4 +1,4 @@
-﻿module Server.SharedTypes
+﻿namespace Server.SharedTypes
 
 open System
 open System.Linq.Expressions

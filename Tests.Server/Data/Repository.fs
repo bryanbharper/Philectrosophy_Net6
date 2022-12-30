@@ -12,9 +12,6 @@ type EmptyContext<'a>() =
         member this.All () =
             Seq.empty<'a> |> Task.FromResult
 
-        member this.Where _ =
-            Seq.empty<'a> |> Task.FromResult
-
         member this.Update _ =
             Task.FromResult(0)
             
@@ -83,7 +80,7 @@ let blogRepoTests =
                     ]
             
                 let context = A.Fake<IContext<BlogEntry>>()
-                A.CallTo(fun () -> context.Where A<BlogEntry -> bool>.Ignored)
+                A.CallTo(fun () -> context.All())
                     .Returns(entries |> Seq.ofList |> Task.FromResult) |> ignore
             
                 let target = BlogRepository(context) :> IRepository<BlogEntry>
@@ -200,8 +197,7 @@ let songRepoTests =
                     ]
             
                 let context = A.Fake<IContext<Song>>()
-                A.CallTo(fun () -> context.Where A<Song -> bool>.Ignored)
-                    .Returns(songs |> Seq.ofList |> Task.FromResult) |> ignore
+                A.CallTo(fun () -> context.All()).Returns(songs |> Seq.ofList |> Task.FromResult) |> ignore
                 
                 let target = SongRepository(context) :> IRepository<Song>
             

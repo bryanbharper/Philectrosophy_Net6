@@ -18,9 +18,9 @@ let blogImagePath =
     Path.combine serverPath "public/blog.posts/img"
 let clientPublicPath = Path.combine clientPath "public"
 
-// let sharedTestsPath = Path.getFullName "tests/Shared"
-// let serverTestsPath = Path.getFullName "tests/Server"
-// let clientTestsPath = Path.getFullName "tests/Client"
+let sharedTestsPath = Path.getFullName "Tests.Shared"
+let serverTestsPath = Path.getFullName "Tests.Server"
+// let clientTestsPath = Path.getFullName "Tests.Client"
 
 let printSection msg =
     Trace.traceLine ()
@@ -69,12 +69,14 @@ Target.create "Run" (fun _ ->
     |> runParallel
 )
 
-// Target.create "RunTests" (fun _ ->
-//     run dotnet "build" sharedTestsPath
-//     [ "server", dotnet "watch run" serverTestsPath
-//       "client", dotnet "fable watch -o output -s --run npm run test:live" clientTestsPath ]
-//     |> runParallel
-// )
+Target.create "RunTests" (fun _ ->
+    run dotnet "build" sharedTestsPath
+    [
+        "server", dotnet "watch run" serverTestsPath
+        // "client", dotnet "fable watch -o output -s --run npm run test:live" clientTestsPath
+    ]
+    |> runParallel
+)
 
 open Fake.Core.TargetOperators
 
@@ -89,8 +91,8 @@ let dependencies = [
         ==> "BlogImages"
         ==> "Run"
 
-    // "InstallClient"
-    //     ==> "RunTests"
+    "InstallClient"
+        ==> "RunTests"
 ]
 
 [<EntryPoint>]
