@@ -6,6 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Build\Configuration.fs" />
+        <Compile Include="Build\SiteMap.fs" />
         <Compile Include="Build/Helpers.fs" />
         <Compile Include="Build/Main.fs" />
     </ItemGroup>
@@ -15,6 +17,17 @@
       <PackageReference Include="Fake.IO.FileSystem" Version="5.23.1" />
       <PackageReference Include="Farmer" Version="1.7.13" />
       <PackageReference Update="FSharp.Core" Version="6.0.7" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Build\appsettings.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="Server\Server.fsproj" />
+      <ProjectReference Include="Shared\Shared.fsproj" />
     </ItemGroup>
 
 </Project>

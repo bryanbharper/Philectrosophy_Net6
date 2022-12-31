@@ -3,6 +3,7 @@
 open System
 open Shared.Extensions
 
+[<CLIMutable>]      // used by SiteMap.fs in build project
 type BlogEntry =
     {
         Author: string
@@ -40,7 +41,7 @@ module BlogEntry =
             CreatedOn = DateTime.UtcNow
             IsPublished = true
             Slug = String.slugify title
-            Synopsis = sprintf "A blog about: %s" title
+            Synopsis = $"A blog about: %s{title}"
             Tags = ""
             ThumbNailUrl = "https://picsum.photos/100/100"
             Title = title

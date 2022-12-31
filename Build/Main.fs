@@ -45,6 +45,11 @@ Target.create "Bundle" (fun _ ->
     |> runParallel
 )
 
+Target.create "WriteSitemap"
+<| fun _ ->
+    "Writing sitemap.xml" |> printSection
+    SiteMap.write ()
+
 Target.create "Azure" (fun _ ->
     let web = webApp {
         name "Safe4._2._0"
