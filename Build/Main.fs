@@ -61,12 +61,12 @@ Target.create "Sandbox"
     |> Deploy.execute Constants.appName Deploy.NoParameters
     |> ignore
 
-Target.create "Azure" (fun _ ->
+Target.create "Deploy" (fun _ ->
     let web = webApp {
-        name "Safe4._2._0"
+        name Constants.appName
         operating_system OS.Windows
         runtime_stack Runtime.DotNet60
-        zip_deploy "deploy"
+        zip_deploy Paths.deploy
     }
     let deployment = arm {
         location Location.WestEurope
@@ -74,7 +74,7 @@ Target.create "Azure" (fun _ ->
     }
 
     deployment
-    |> Deploy.execute "Safe4._2._0" Deploy.NoParameters
+    |> Deploy.execute Constants.appName Deploy.NoParameters
     |> ignore
 )
 
@@ -102,7 +102,7 @@ let dependencies = [
     "Clean"
         ==> "InstallClient"
         ==> "Bundle"
-        ==> "Azure"
+        ==> "Deploy"
         
     "Clean"
         ==> "InstallClient"
