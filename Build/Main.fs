@@ -38,6 +38,29 @@ Target.create "WriteSitemap"
     "Writing sitemap.xml" |> printSection
     SiteMap.write ()
 
+Target.create "Sandbox"
+<| fun _ ->
+    "Deploying to Sandbox Environment on Azure" |> printSection
+
+    let web =
+        webApp {
+            name (Constants.appName + "-sbx")
+            operating_system OS.Windows
+            runtime_stack Runtime.DotNet60
+            zip_deploy Paths.deploy
+            setting "ASPNETCORE_ENVIRONMENT" "Sandbox"
+        }
+
+    let deployment =
+        arm {
+            location Location.CentralUS
+            add_resource web
+        }
+
+    deployment
+    |> Deploy.execute Constants.appName Deploy.NoParameters
+    |> ignore
+
 Target.create "Azure" (fun _ ->
     let web = webApp {
         name "Safe4._2._0"
@@ -74,10 +97,17 @@ Target.create "RunTests" (fun _ ->
 open Fake.Core.TargetOperators
 
 let dependencies = [
+    "BlogImages" ==> "Bundle"
+    
     "Clean"
         ==> "InstallClient"
         ==> "Bundle"
         ==> "Azure"
+        
+    "Clean"
+        ==> "InstallClient"
+        ==> "Bundle"
+        ==> "Sandbox"
 
     "Clean"
         ==> "InstallClient"
