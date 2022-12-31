@@ -6,7 +6,7 @@ open Shared.Extensions
 open Server.Data
 
 let private getIds () =
-    let context = BlogContext(Configuration.configuration)
+    let context = BlogContext(Config.configuration)
     let repo = BlogRepository(context) :> IRepository<BlogEntry>
     repo.GetAll()
     |> Async.map (fun entries -> entries |> List.map (fun entry -> entry.Slug))

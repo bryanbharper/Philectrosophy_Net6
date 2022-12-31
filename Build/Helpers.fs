@@ -2,9 +2,10 @@
 
 open Fake.Core
 
-let initializeContext () =
-    let execContext = Context.FakeExecutionContext.Create false "build.fsx" [ ]
-    Context.setExecutionContext (Context.RuntimeContext.Fake execContext)
+module Context =
+    let initialize () =
+        let execContext = Context.FakeExecutionContext.Create false "build.fsx" [ ]
+        Context.setExecutionContext (Context.RuntimeContext.Fake execContext)
 
 module Proc =
     module Parallel =

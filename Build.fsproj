@@ -6,9 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Build\Configuration.fs" />
+        <Compile Include="Build\Config.fs" />
+        <Compile Include="Build\Helpers.fs" />
         <Compile Include="Build\SiteMap.fs" />
-        <Compile Include="Build/Helpers.fs" />
         <Compile Include="Build/Main.fs" />
     </ItemGroup>
 

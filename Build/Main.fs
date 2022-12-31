@@ -1,5 +1,6 @@
 ﻿module Build.Main
 
+open Build.Config
 open Fake.Core
 open Fake.IO
 open Farmer
@@ -7,20 +8,7 @@ open Farmer.Builders
 
 open Helpers
 
-initializeContext()
-
-let sharedPath = Path.getFullName "Shared"
-let serverPath = Path.getFullName "Server"
-let clientPath = Path.getFullName "Client"
-let deployPath = Path.getFullName "deploy"
-
-let blogImagePath =
-    Path.combine serverPath "public/blog.posts/img"
-let clientPublicPath = Path.combine clientPath "public"
-
-let sharedTestsPath = Path.getFullName "Tests.Shared"
-let serverTestsPath = Path.getFullName "Tests.Server"
-// let clientTestsPath = Path.getFullName "Tests.Client"
+Context.initialize()
 
 let printSection msg =
     Trace.traceLine ()
@@ -28,20 +16,20 @@ let printSection msg =
     Trace.traceLine ()
 
 Target.create "Clean" (fun _ ->
-    Shell.cleanDir deployPath
-    run dotnet "fable clean --yes" clientPath // Delete *.fs.js files created by Fable
+    Shell.cleanDir Paths.deploy
+    run dotnet "fable clean --yes" Paths.client // Delete *.fs.js files created by Fable
 )
 
 Target.create "BlogImages"
 <| fun _ ->
     "Moving blog images to client." |> printSection
-    Shell.copyDir (Path.combine clientPublicPath "img") blogImagePath (fun _ -> true)
+    Shell.copyDir (Path.combine Paths.clientPublic "img") Paths.blogImage (fun _ -> true)
 
-Target.create "InstallClient" (fun _ -> run npm "install" clientPath)
+Target.create "InstallClient" (fun _ -> run npm "install" Paths.client)
 
 Target.create "Bundle" (fun _ ->
-    [ "server", dotnet $"publish -c Release -o \"{deployPath}\"" serverPath
-      "client", dotnet "fable -o output -s --run npm run build" clientPath ]
+    [ "server", dotnet $"publish -c Release -o \"{Paths.deploy}\"" Paths.server
+      "client", dotnet "fable -o output -s --run npm run build" Paths.client ]
     |> runParallel
 )
 
@@ -68,16 +56,16 @@ Target.create "Azure" (fun _ ->
 )
 
 Target.create "Run" (fun _ ->
-    run dotnet "build" sharedPath
-    [ "server", dotnet "watch run" serverPath
-      "client", dotnet "fable watch -o output -s --run npm run start" clientPath ]
+    run dotnet "build" Paths.shared
+    [ "server", dotnet "watch run" Paths.server
+      "client", dotnet "fable watch -o output -s --run npm run start" Paths.client ]
     |> runParallel
 )
 
 Target.create "RunTests" (fun _ ->
-    run dotnet "build" sharedTestsPath
+    run dotnet "build" Paths.sharedTests
     [
-        "server", dotnet "watch run" serverTestsPath
+        "server", dotnet "watch run" Paths.serverTests
         // "client", dotnet "fable watch -o output -s --run npm run test:live" clientTestsPath
     ]
     |> runParallel
