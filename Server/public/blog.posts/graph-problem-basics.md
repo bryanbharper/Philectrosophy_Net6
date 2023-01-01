@@ -11,7 +11,7 @@ Graphs are a data structure that can be used to represent relationships between 
 
 A graph consists of a set of **nodes** (also known as vertices) and a set of **edges** connecting those nodes. Consider the subway map below:
 
-![geometric-metro-map-with-pinpoint](img/geometric-metro-map-with-pinpoint.jpg) [POP]Image by <a href="https://www.freepik.com/free-photo/geometric-metro-map-with-pinpoint_5003381.htm#query=subway%20map&position=0&from_view=search&track=sph">Freepik</a>[/POP]
+![geometric-metro-map-with-pinpoint](img/ai-generated-subway-map.jpg)
 
 We could model this map as a graph by thinking of the stations as nodes and the rail lines as edges.
 
