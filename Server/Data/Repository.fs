@@ -13,7 +13,7 @@ type BlogRepository(context: IContext<BlogEntry>) =
         member this.GetAll() =
             context.All()
             |> Async.AwaitTask
-            |> Async.map List.ofSeq
+            |> Async.map (Seq.filter (fun s -> s.IsPublished) >> List.ofSeq)
             
         member this.GetSingle slug =
             context.All()
