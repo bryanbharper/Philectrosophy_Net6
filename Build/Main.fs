@@ -97,7 +97,11 @@ Target.create "Test" (fun _ ->
 open Fake.Core.TargetOperators
 
 let dependencies = [
-    "BlogImages" ==> "Bundle"
+    "BlogImages"
+        ==> "Bundle"
+    
+    "WriteSitemap"
+        ==> "Bundle"
     
     "Clean"
         ==> "InstallClient"
