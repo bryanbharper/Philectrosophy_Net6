@@ -68,8 +68,9 @@ Target.create "Deploy" (fun _ ->
         runtime_stack Runtime.DotNet60
         zip_deploy Paths.deploy
     }
+    
     let deployment = arm {
-        location Location.WestEurope
+        location Location.CentralUS
         add_resource web
     }
 
