@@ -2,6 +2,7 @@
 
 open Feliz
 
+open Feliz.Bulma.Bulma
 open Shared.Extensions
 open Shared.Dtos
 
@@ -28,7 +29,25 @@ let private updatedMsg entry =
             prop.text $"Updated: %s{Date.format date}"
         ]
 
-let private subTitle entry =
+let private subtitle entry =
+    Html.p [
+        prop.classes [ Bulma.Subtitle; Bulma.Is5; Bulma.Mb1 ]
+        prop.children [
+            Html.span [
+                prop.classes [
+                    Bulma.HasTextGrey
+                ]
+                
+                match entry.Subtitle with
+                | Some subtitle -> subtitle
+                | _ -> ""
+                |> prop.text
+            ]
+            updatedMsg entry
+        ]
+    ]
+
+let private date entry =
     Html.p [
         prop.classes [ Bulma.Subtitle; Bulma.Is6; Bulma.Mb1 ]
         prop.children [
@@ -48,7 +67,8 @@ let private synopsis entry = Html.p entry.Synopsis
 let private media (entry: BlogEntry) =
     [
         title entry
-        subTitle entry
+        subtitle entry
+        date entry
         synopsis entry
     ]
     |> MediaObject.render entry.ThumbNailUrl
