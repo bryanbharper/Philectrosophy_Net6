@@ -1,6 +1,6 @@
 ## Introduction
 
-Hello, fellow F# nerds! In this post, I'll be diving into the world of multiline bracket formatting styles (✨ so exhilarating ✨). Specifically, I'll be exploring the differences between [_cramped_](https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#multiline-bracket-formatting-styles) and [_aligned_](https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#multiline-bracket-formatting-styles) bracket styles.[POP]Note: [_Stroustrup_](https://en.wikipedia.org/wiki/Indentation_style#Variant:_Stroustrup) is another option, but we won't be discussing it here. Luckily, it's close enough to _aligned_ that the subsequent discussion will apply to _Stroustrup_.[/POP] Let's kick things off with a brief rundown of these formatting styles using a simple example:
+Hello, fellow F# nerds! In this post, I'll be diving into the world of multiline bracket formatting (✨ so exhilarating ✨). Specifically, I'll be exploring the differences between [_cramped_](https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#multiline-bracket-formatting-styles) and [_aligned_](https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#multiline-bracket-formatting-styles) bracket styles.[POP]Note: [_Stroustrup_](https://en.wikipedia.org/wiki/Indentation_style#Variant:_Stroustrup) is another option, but we won't be discussing it here. Luckily, it's close enough to _aligned_ that the subsequent discussion will apply to _Stroustrup_.[/POP] Let's kick things off with a brief rundown of these formatting styles using a simple example:
 
 #### Aligned:
 ```fsharp
@@ -38,7 +38,7 @@ let songs =
       "Here Comes the Sun" ]
 ```
 
-As you can see, the _cramped_ style shoves the beginning and end members onto the same line as the beginning and end brackets, while _aligned_ offers us a bit more breathing room. 
+As you can see, the _cramped_ style places the beginning and end members onto the same line as the beginning and end brackets, while _aligned_ offers us a bit more breathing room. 
 
 In F#, _cramped_ is the standard bracket format style, and the default option of the most popular code formatter, [Fantomas](https://fsprojects.github.io/fantomas/). However, it's my view that cramped causes far more headaches than it provides benefits (the use of the word "cramped" suggests the F# community may feel the same way). So, in this post I'll argue that it's time to stretch out our code and bid farewell to those cramps! Let's jump in and take a closer look at how multiline bracket formatting styles can impact our F# code readability and maintainability.
 
@@ -48,7 +48,7 @@ In F#, _cramped_ is the standard bracket format style, and the default option of
 > 
 > _-- Scott Hanselman_
 
-When using cramped brackets many of the most common editor actions go from being trivial to a nuisance. Let's run through a few.
+When using cramped brackets, many of the most common editor actions go from being trivial to a nuisance. Let's run through a few.
 
 ### Reordering
 Most IDEs let you reorder lines of code with a simple key-bind (e.g., <kbd>Alt + &uarr;/&darr;</kbd> in VS Code). Let's take a stab at this with aligned brackets:
@@ -97,7 +97,7 @@ Oof...
 
 ### Additions
 
-Of course, we need to write new code, too! So how hard is it to add new songs to our list? Here's some additions with aligned brackets:
+Of course, we need to write new code, too! So how hard is it to add new songs to our list? Here are some additions with aligned brackets:
 
 ![aligned addition](img/aligned-additions.gif)
 
@@ -117,10 +117,10 @@ As developers, we do far more than write code. We also need to read (and _unders
 > 
 > _-- Robert C. Martin_
 
-The less brain power we need to use to visually process information, the more we have available for reasoning about the problem at hand!
+The less brain power we need to use to visually process information, the more we have available for reasoning about the problem at hand.
 
 ### Visualizing Scope
-Quickly discerning the scope of an expression is essential to understanding the code you're scrutinizing. Let's compared how easily we can discern scope with our two bracket styles.
+Quickly discerning the scope of an expression is essential to understanding the code you're scrutinizing. Let's compare how easily we can discern scope with our two bracket styles.
 
 Using aligned brackets, we see that the beginning and end brackets line up, creating a quick visual guide. And in many IDEs a line is even drawn between these aligned brackets, making it even easier! To really highlight this, I've installed the [Indent Rainbow plugin](https://plugins.jetbrains.com/plugin/13308-indent-rainbow). Take a look:
 
@@ -153,7 +153,7 @@ This isn't problematic simply for aesthetic reasons, _though there is certainly 
 
 ## A Point in Cramped's Favor
 
-There is one benefit to cramped, which is that it takes up far less vertical space:
+There is one benefit to the cramped bracket style, which is that it takes up far less vertical space:
 
 ```fsharp
 let cramped =
@@ -213,11 +213,11 @@ let aligned =
     }
 ```
 
-That said, it takes up the same amount of horizontal space. Given the use and split editors and multiple reference windows, I find horizontal space to be more useful. So, for me this isn't a deal-breaker. Nevertheless, there's no denying that cramped is more, well, cramped!
+That said, it takes up the same amount of horizontal space. Given the use of split editors and multiple reference windows, I find horizontal space to be more useful. So, for me, this isn't a deal-breaker. Nevertheless, there's no denying that cramped is more, well, cramped!
 
 Speaking of horizontal space, what if we decided to use two-space indentations instead of four? According to the official [F# Style Guide](https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#use-consistent-indentation) this is a legitimate option. It would certainly provide us more horizontal space! 
 
-We can use the [online Fantomas tool](https://fsprojects.github.io/fantomas-tools/#/fantomas/preview) and set `IndentSize` to two. Now scroll down and set `MultilineBracketStyle` to `Aligned`. Things look as you would expect:
+We can use the [online Fantomas tool](https://fsprojects.github.io/fantomas-tools/#/fantomas/preview) and set `IndentSize` to two. Now scroll down and set `MultilineBracketStyle` to `Aligned`. Things look as you'd expect:
 
 ![aligned two-space indentation](img/aligned-two-space.png)
 
@@ -232,8 +232,8 @@ The code doesn't even compile...
 ## How to Make the Change
 Ready to rid yourself of cramps?
 
- If you're using Fantomas, you can modify the `.editorconifg` file ([see documentation](https://fsprojects.github.io/fantomas/docs/end-users/Configuration.html)) by adding the `fsharp_multiline_bracket_style = aligned` setting ([see documentation](https://fsprojects.github.io/fantomas/docs/end-users/Configuration.html#fsharp_multiline_bracket_style)).
+ If you're using Fantomas, you can modify the `.editorconfig` file ([see documentation](https://fsprojects.github.io/fantomas/docs/end-users/Configuration.html)) by adding the `fsharp_multiline_bracket_style = aligned` setting ([see documentation](https://fsprojects.github.io/fantomas/docs/end-users/Configuration.html#fsharp_multiline_bracket_style)).
 
 If you're using your editor's built in formatter, take a look through its settings. In Jetbrains Rider, for example, it's under `Settings > Editor > Code Style > F#` and the setting is a checkbox labeled _"Align opening and closing braces of record, array and list expressions"_.  
 
-Now let your code can take a big stretch and get some fresh air!
+Now let your code take a big stretch and get some fresh air!
