@@ -3,7 +3,7 @@
 open Client.Styles
 open Feliz
 
-let render imgUrl (contents: ReactElement list) =
+let render imgUrl (mediaRight: ReactElement list) (mainContents: ReactElement list) =
     Html.div [
         prop.className Bulma.Media
         prop.children [
@@ -24,9 +24,14 @@ let render imgUrl (contents: ReactElement list) =
                 prop.children [
                     Html.div [
                         prop.className Bulma.Content
-                        prop.children contents
+                        prop.children mainContents
                     ]
                 ]
+            ]
+            
+            Html.div [
+                prop.className Bulma.MediaRight
+                prop.children mediaRight
             ]
         ]
     ]

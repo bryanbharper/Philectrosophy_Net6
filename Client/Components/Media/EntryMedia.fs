@@ -30,7 +30,7 @@ let private updatedMsg entry =
         ]
 
 let private subtitle entry =
-    Html.p [
+    Html.div [
         prop.classes [ Bulma.Subtitle; Bulma.Is5; Bulma.Mb1 ]
         prop.children [
             Html.span [
@@ -43,7 +43,6 @@ let private subtitle entry =
                 | _ -> ""
                 |> prop.text
             ]
-            updatedMsg entry
         ]
     ]
 
@@ -62,16 +61,42 @@ let private date entry =
         ]
     ]
 
+let private views viewCount =
+     Html.span [
+         prop.classes [ "icon-text"; Bulma.HasTextGreyLight ]
+         prop.children [
+             Html.span [
+                prop.classes [ Bulma.Icon ]
+                prop.children [
+                    Html.i [
+                        prop.classes [ FA.Fa; FA.FaEye ]
+                    ]
+                ]
+             ]
+             Html.span $"%d{viewCount}"
+         ]
+     ]
+     
+let subTitleAndViews entry =
+    Html.div [
+        prop.classes [ Bulma.Subtitle ]
+        prop.children [
+            views entry.ViewCount
+            subtitle entry
+        ]
+    ]
+
 let private synopsis entry = Html.p entry.Synopsis
 
 let private media (entry: BlogEntry) =
     [
         title entry
-        subtitle entry
+        // subtitle entry
+        subTitleAndViews entry
         date entry
         synopsis entry
     ]
-    |> MediaObject.render entry.ThumbNailUrl
+    |> MediaObject.render entry.ThumbNailUrl [ ]
 
 let private (</>) left right = $"%s{left}/%s{right}"
 
