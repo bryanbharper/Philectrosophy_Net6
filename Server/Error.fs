@@ -13,5 +13,4 @@ let handler (ex: Exception) (routeInfo: RouteInfo<HttpContext>) =
     contextLogger.Error(ex, errorMsgTemplate, routeInfo.methodName, routeInfo.path)
 
     // See https://zaid-ajaj.github.io/Fable.Remoting/src/error-handling.html
-    match ex with
-    | _ -> Ignore
+    Propagate {| errorMsg = $"Unhandled exception: {ex.Message}" |}
