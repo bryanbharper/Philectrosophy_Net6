@@ -27,7 +27,7 @@ let private header (entry: BlogEntry) =
 
     let title =
         Html.h4 [ 
-            prop.classes [ Bulma.Title; Bulma.Is4 ]
+            prop.classes [ Bulma.Title; Bulma.Is4; Bulma.M1 ]
             prop.text entry.Title 
         ]
         
