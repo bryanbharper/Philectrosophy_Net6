@@ -2,19 +2,66 @@
 
 open Feliz
 
-open Feliz.Bulma.Bulma
 open Shared.Extensions
 open Shared.Dtos
 
 open Client.Styles
 open Client.Urls
 
-let private title (entry: BlogEntry) = 
-    Html.h4 [ 
-        prop.classes [ Bulma.Title; Bulma.Is4 ]
-        prop.text entry.Title 
-    ]
+let private header (entry: BlogEntry) =
+    let views =
+         Html.span [
+             prop.classes [ "icon-text"; Bulma.HasTextGreyLight ]
+             prop.children [
+                 Html.span [
+                    prop.classes [ Bulma.Icon ]
+                    prop.children [
+                        Html.i [
+                            prop.classes [ FA.Fa; FA.FaEye ]
+                        ]
+                    ]
+                 ]
+                 Html.span $"%d{entry.ViewCount}"
+             ]
+         ]
 
+    let title =
+        Html.h4 [ 
+            prop.classes [ Bulma.Title; Bulma.Is4 ]
+            prop.text entry.Title 
+        ]
+        
+    Html.div [
+        Html.div [
+            prop.classes [
+                Bulma.Level
+                Bulma.M0
+                Bulma.IsMobile
+                Bulma.IsHiddenTouch
+            ]
+            prop.children [
+                Html.div [
+                    prop.classes [ Bulma.LevelLeft ]
+                    prop.children [
+                        title
+                    ]
+                ]
+                Html.div [
+                    prop.classes [ Bulma.LevelRight ]
+                    prop.children [
+                        views
+                    ]
+                ]
+            ]
+        ]
+        Html.div [
+            prop.classes [
+                Bulma.IsHiddenDesktop
+            ]
+            prop.children [ title ]
+        ]
+    ]
+        
 
 let private updatedMsg entry =
     match entry.UpdatedOn with
@@ -38,9 +85,8 @@ let private subtitle entry =
                     Bulma.HasTextGrey
                 ]
                 
-                match entry.Subtitle with
-                | Some subtitle -> subtitle
-                | _ -> ""
+                entry.Subtitle
+                |> Option.defaultValue ""
                 |> prop.text
             ]
         ]
@@ -60,39 +106,13 @@ let private date entry =
             updatedMsg entry
         ]
     ]
-
-let private views viewCount =
-     Html.span [
-         prop.classes [ "icon-text"; Bulma.HasTextGreyLight ]
-         prop.children [
-             Html.span [
-                prop.classes [ Bulma.Icon ]
-                prop.children [
-                    Html.i [
-                        prop.classes [ FA.Fa; FA.FaEye ]
-                    ]
-                ]
-             ]
-             Html.span $"%d{viewCount}"
-         ]
-     ]
      
-let subTitleAndViews entry =
-    Html.div [
-        prop.classes [ Bulma.Subtitle ]
-        prop.children [
-            views entry.ViewCount
-            subtitle entry
-        ]
-    ]
-
 let private synopsis entry = Html.p entry.Synopsis
 
 let private media (entry: BlogEntry) =
     [
-        title entry
-        // subtitle entry
-        subTitleAndViews entry
+        header entry
+        subtitle entry
         date entry
         synopsis entry
     ]
