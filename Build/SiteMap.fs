@@ -16,7 +16,7 @@ let private getIds () =
 let private writeSitemap (ids: string list) =
     let urlNodes =
         ids
-        |> List.map (fun id -> $"\t<url><loc>http://www.philectrosophy.com/blog/%s{id}</loc></url>")
+        |> List.map (fun id -> $"\t<url><loc>https://www.philectrosophy.com/blog/%s{id}</loc></url>")
         |> String.concat "\n"
     
     let sitemap =
