@@ -18,10 +18,24 @@ Nevertheless, with no idea what I'm doing, I decided to plow ahead and run my jo
 
 The tool gives a sentiment score between -100 and +100, and is supposed to measure the positivity or negativity of emotions conveyed by the input text. Here are the results:
 
-| Month      | &nbsp; Score |
-| ----------- | ----------- |
-| December  | &nbsp; +4.0       |
-| January   | &nbsp; -27.3        |
+<table class="table">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>December</th>
+            <td>+4.0</td>
+        </tr>
+        <tr>
+            <th>January</th>
+            <td>-27.3</td>
+        </tr>
+    </tbody>
+</table>
 
 This is not what I would have expected going into the month. However, having now lived through January 2021... yea. On the 6th, insurrectionists stormed the Capitol. After that, there was a lot of toxic politics, crazy conspiracy theories, and the looming threat of right-wing terrorism. Unfortunately, that stuff got to me. I did a lot of doom scrolling. So, yea, the results aren't too surprising, all things considered.
 
@@ -33,10 +47,27 @@ So, unfortunately, I don't think we can draw any meaningful conclusion about how
 
 This is where I expected cutting back to have the greatest impact. I know that alcohol causes me to wake up in the middle of the night, and I often feel pretty crummy the day following a couple of drinks. What do the numbers say?
 
-| Month      | &nbsp; Score | &nbsp; Standard Deviation |
-| ----------- | ----------- | ----------- |
-| December  | &nbsp; 79.8 | &nbsp; 5.1 |
-| January   | &nbsp;  79.5 | &nbsp; 5.3 |
+<table class="table">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Score</th>
+            <th>Standard Deviation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>December</th>
+            <td>79.8</td>
+            <td>5.1</td>
+        </tr>
+        <tr>
+            <th>January</th>
+            <td>79.5</td>
+            <td>5.3</td>
+        </tr>
+    </tbody>
+</table>
 
 Cutting back drinking appears to have had no impact.
 
@@ -54,10 +85,24 @@ As we all know, 2020 was rough. And, like a lot of people, I'm not very happy to
 
 So, I was hoping that saying bye bye to the mai tais would allow me to shed some pounds.[POP]I've actually never had a mai tai... they look tasty though. Comment with a recipe :)[/POP] Let's look at the numbers:
 
-| Date      | &nbsp; Weight |
-| ----------- | ----------- |
-| December 31 | &nbsp; 186.5      |
-| January 30  |&nbsp; 184.9       |
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>December 31</th>
+            <td>186.5</td>
+        </tr>
+        <tr>
+            <th>January 30</th>
+            <td>184.9</td>
+        </tr>
+    </tbody>
+</table>
 
 There was a *slight* decrease of about 1.6 lbs. Not nothing. However, in September I had reached my peak weight of about 196 lbs, which means that between September and December I was losing an average of 3.3 lbs a month. Given that, 1.6 lbs isn't particularly encouraging when put in perspective.
 
