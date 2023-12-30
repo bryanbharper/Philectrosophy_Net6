@@ -64,7 +64,7 @@ Target.create "Sandbox"
 Target.create "Deploy" (fun _ ->
     let web = webApp {
         name Constants.appName
-        sku WebApp.Sku.B1
+        sku WebApp.Sku.D1
         operating_system OS.Windows
         runtime_stack Runtime.DotNet60
         zip_deploy Paths.deploy
